@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Pagination</title>
+  </head>
+  <body>
+    <script>
+        let data = [];
+        for(let i=0; i<100 ; i++){
+            data.push(`h${i+1}`);
+        }
+        
+       const personPerRow = 5;
+        const rowCount = data.length / personPerRow;
+        console.log(rowCount);
+        let currentIndex = 0;
+        const firstBtn = document.createElement("button");
+        firstBtn.innerText = "First";
+        firstBtn.onclick = function(){
+            let firstData = data.slice(0,5);
+            console.log(firstData);
+        }
+        
+        document.body.appendChild(firstBtn);
+        const previousBtn = document.createElement("button");
+                previousBtn.innerText = "Previous";
+                previousBtn.onclick = function() {
+                let startingp = ((currentIndex-1) - 1) * personPerRow;
+                let limitp = startingp + personPerRow;
+                console.log(startingp);
+                console.log(limitp);
+                let previousData = data.slice(startingp,limitp);
+                console.log(previousData);
+                currentIndex = currentIndex -1 ;
+                }
+              document.body.appendChild(previousBtn);
+
+        for(let index = 2; index <=rowCount; index++){
+            const btn = document.createElement("button");
+            btn.innerText = index;
+            btn.onclick = function(){
+                let starting = (parseInt(this.innerText) - 1) * personPerRow;
+                let limit = starting + personPerRow;
+                console.log(starting);
+                console.log(limit);
+                let finalData = data.slice(starting,limit);
+                console.log(finalData);
+                currentIndex = index;
+              }
+                document.body.appendChild(btn);
+            }
+            
+        
+    </script>
+  </body>
